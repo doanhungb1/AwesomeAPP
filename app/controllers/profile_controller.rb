@@ -5,7 +5,7 @@ class ProfileController < ApplicationController
   end
 
   def create
-    @profile = @current_user.employees.create(profile_params)
+    @profile = @current_user.create_profile(profile_params)
 
     respond_to do |format|
       if @profile.save
@@ -18,7 +18,6 @@ class ProfileController < ApplicationController
     end
   end
 
-  # PATCH/PUT /employees/1 or /employees/1.json
   def update
     respond_to do |format|
       if @profile.update(employee_params)
@@ -32,13 +31,13 @@ class ProfileController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_profile
       @profile = @current_user.profile
     end
 
     # Only allow a list of trusted parameters through.
     def profile_params
-      params.permit(:name, :title, :parent_id)
+      params.require(:employee).permit(:name, :title, :parent_id)
     end
 end

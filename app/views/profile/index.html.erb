@@ -5,5 +5,26 @@
   <% if @profile.parent.present? %>
     <p>Direct manager: <%= @profile.parent.name %></p>
   <% end %>
+<% else %>
+  <h3>Create new profile %></h3>
+  <%= form_with model: Employee.new, url: { :controller => "profile", :action => "create" }  do |form| %>
+    <div>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </div>
 
+    <div>
+      <%= form.label :title %><br>
+      <%= form.text_area :title %><br>
+    </div>
+
+    <div>
+      <%= form.label "Direct Manager" %><br>
+      <%= form.text_area :parent_id %><br>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
 <% end %>
