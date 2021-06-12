@@ -1,0 +1,14 @@
+<h1>Employee Info</h1>
+<p id="notice"><%= notice %></p>
+<p>Name: <%= @employee.name %></p>
+
+<p>Title: <%= @employee.title %></p>
+
+<% if @employee.parent.present? %>
+  <p>Direct manager: <%= @employee.parent.name %></p>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %>

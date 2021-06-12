@@ -13,4 +13,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_in, keys: [:login, :password, :remember_me]
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
+
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      redirect_to '/users/sign_in'
+    end
+  end
 end
