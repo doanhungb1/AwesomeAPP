@@ -1,0 +1,9 @@
+<h2>Profile</h2>
+<% if @profile.present? %>
+  <h3>Name: <%= @profile.name %></h3>
+  <p>Title: <%= @profile.title %></p>
+  <% if @profile.parent.present? %>
+    <p>Direct manager: <%= @profile.parent.name %></p>
+  <% end %>
+
+<% end %>
