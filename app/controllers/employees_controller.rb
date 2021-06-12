@@ -14,10 +14,12 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
+    @employees = Employee.order(updated_at: :desc)
   end
 
   # GET /employees/1/edit
   def edit
+    @employees = Employee.order(updated_at: :desc)
   end
 
   # POST /employees or /employees.json
