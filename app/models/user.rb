@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,:recoverable, :rememberable,
          :validatable, authentication_keys: [:login]
 
+  belongs_to :profile, class_name: :Employee, foreign_key: :employee_id, optional: true
+
   attr_writer :login
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
