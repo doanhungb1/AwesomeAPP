@@ -6,7 +6,7 @@
     <p>Direct manager: <%= @profile.parent.name %></p>
   <% end %>
 <% else %>
-  <h3>Create new profile %></h3>
+  <h3>Create new profile</h3>
   <%= form_with model: Employee.new, url: { :controller => "profile", :action => "create" }  do |form| %>
     <div>
       <%= form.label :name %><br>
@@ -20,8 +20,8 @@
 
     <div>
       <%= form.label "Direct Manager" %><br>
-      <%= form.text_area :parent_id %><br>
-    </div>
+      <%= form.select("parent_id", @employees.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }) %>
+    <div>
 
     <div class="actions">
       <%= form.submit %>
