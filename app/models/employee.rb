@@ -8,7 +8,7 @@ class Employee < ApplicationRecord
   validates :title, presence: true
 
   def employees
-    self.siblings
+    self.descendants
   end
 
   def managers

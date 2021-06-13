@@ -22,8 +22,85 @@
     chart.draw(data, {'allowHtml':true});
   }
 </script>
+<script type="text/javascript">
+  $(function(){
+   $("#employees_search_form_select").click(function(){
+     var val = $('#employees_search_form_select option:selected').val();
+     $("#employees_search_link").attr("href", 'employees/'+ val + '/employees');
+   })
+
+   $("#managers_search_form_select").click(function(){
+     var val = $('#managers_search_form_select option:selected').val();
+     $("#managers_search_link").attr("href", 'employees/'+ val + '/managers');
+   })
+
+   $("#relationship_search_link").click(function(){
+     var first_emp_select = $('#first_emp_select option:selected').val();
+     var second_emp_select = $('#second_emp_select option:selected').val();
+     $("#relationship_search_link").attr("href", 'employees/'+ first_emp_select + '/relationship/' + second_emp_select);
+   })
+  })
+</script>
 
 <h1>Employees</h1>
 
 <div id="chart_div"></div>
-<div id="utility"></div>
+<div id="utility">
+  <div class="employees_search">
+    <%= form_with method: "get" do |form| %>
+      <div>
+        <%= form.label "Find employees of" %><br>
+        <%= form.select("parent_id", @employees.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }, id: "employees_search_form_select") %>
+      <div>
+
+      <div class="actions">
+        <a id="employees_search_link" href="/employees/", data-remote= true>submit</a>
+      </div>
+
+    <% end %>
+  </div>
+
+  <div class="employees_search">
+    <%= form_with method: "get" do |form| %>
+      <div>
+        <%= form.label "Find managers of" %><br>
+        <%= form.select("parent_id", @employees.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }, id: "managers_search_form_select") %>
+      <div>
+
+      <div class="actions">
+        <a id="managers_search_link" href="/employees/", data-remote= true>submit</a>
+      </div>
+
+    <% end %>
+  </div>
+
+  <div class="employees_search">
+    <%= form_with method: "get" do |form| %>
+      <div>
+        <%= form.label "Relationshipo between" %><br>
+        <%= form.select("parent_id", @employees.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }, id: "first_emp_select") %>
+        <%= form.select("parent_id", @employees.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }, id: "second_emp_select") %>
+      <div>
+
+      <div class="actions">
+        <a id="relationship_search_link" href="/employees/", data-remote= true>submit</a>
+      </div>
+
+    <% end %>
+  </div>
+
+  <div class="employees_search">
+    <%= form_with method: "get" do |form| %>
+      <div>
+        <%= form.label "Show N first emploees" %><br>
+        <%= form.number_field("number_first_employees") %>
+      <div>
+
+      <div class="actions">
+          <input type="submit">
+      </div>
+
+    <% end %>
+  </div>
+  <div id="employees_search_result"></div>
+</div>
