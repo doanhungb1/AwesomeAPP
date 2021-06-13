@@ -1,10 +1,11 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_employee, only: %i[ show edit update destroy ]
+  before_action :set_employee, only: %i[ show edit update destroy employees managers relationship]
 
   # GET /employees or /employees.json
   def index
-    @employees = Employee.all
+    @employees = Employee.order(created_at: :asc)
+    @employees = @employees.limit(params[:number_first_employees]) if params[:number_first_employees]
   end
 
   # GET /employees/1 or /employees/1.json
@@ -56,6 +57,30 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to employees_url, notice: "Employee was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  # GET /employees/1/managers
+  def managers
+    @searched_managers = @employee.managers
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  # GET /employees/1/employees
+  def employees
+    @searched_employees = @employee.employees
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  # GET /employees/1/relationship/2
+  def relationship
+    @relationship = @employee.relationship_with_employee(Employee.find(params[:target_employee_id]))
+    respond_to do |format|
+      format.js
     end
   end
 
