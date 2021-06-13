@@ -16,16 +16,22 @@
   <body>
     <% if user_signed_in? %>
       <ul class="menu">
-        <li class="active"><a href="/">Home</a></li>
+        <li class=""><a href="/">Home</a></li>
         <li class=""><%= link_to 'New Employee', new_employee_path %></li>
         <li class=""><%= link_to 'Employees', employees_path %></li>
         <li class=""><%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %></li>
       </ul>
     <% end %>
-    <%= yield %>
-    <div class="container-fluid">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+
+    <div class="row">
+      <div class="column side"></div>
+      <div class="column container-fluid" style="background-color:#f1f1f1;">
+        <%= yield %>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <div class="column side"></div>
     </div>
+
   </body>
 </html>

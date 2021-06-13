@@ -14,8 +14,27 @@
  *= require_self
  */
  .menu {
-   padding: 0
+  background-color: #bbb;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
  }
+.column{
+ float: left;
+ padding: 10px;
+}
+ .column.side {
+   width: 25%;
+ }
+
+ .column.container-fluid {
+   width: 50%;
+ }
+
+
+.column.middle {
+  width: 50%;
+}
  .menu li{
    display: inline-block;
    margin-right: 1em;
