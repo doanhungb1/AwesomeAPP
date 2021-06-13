@@ -1,0 +1,7 @@
+var body = document.getElementById("employees_search_result");
+body.innerHTML = "List employees: <%= @searched_employees.pluck(:name).join(", ") %>";
+<% if @searched_employees.present? %>
+  body.innerHTML = "List employees: <%= @searched_employees.pluck(:name).join(", ") %>";
+<% else %>
+  body.innerHTML = "He/she has no employees";
+<% end %>

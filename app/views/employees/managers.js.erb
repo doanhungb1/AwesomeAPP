@@ -1,0 +1,6 @@
+var body = document.getElementById("employees_search_result");
+<% if @searched_managers.present? %>
+  body.innerHTML = "List managers: <%= @searched_managers.pluck(:name).join(", ") %>";
+<% else %>
+  body.innerHTML = "He/she has no managers";
+<% end %>
