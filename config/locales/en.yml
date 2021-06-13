@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  relationship_with_employee:
+    manager: "Employee %{first_employee_name} is one of managers of employee %{second_employee_name}"
+    subordinate: "Employee %{first_employee_name} is a subordinate employee %{second_employee_name}"
+    no_relationship: "Employee %{first_employee_name} and employee %{second_employee_name} don't have any relationship"
+    same: "They are the same"
