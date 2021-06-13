@@ -14,7 +14,7 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
-    @employees = Employee.order(updated_at: :desc)
+    @employees = Employee.all
   end
 
   # GET /employees/1/edit

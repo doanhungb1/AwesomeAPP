@@ -1,26 +1,28 @@
 <p id="notice"><%= notice %></p>
+<script type="text/javascript">
+  google.charts.load('current', {packages:["orgchart"]});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Name');
+    data.addColumn('string', 'Manager');
+    data.addColumn('string', 'ToolTip');
+
+    // For each orgchart box, provide the name, manager, and tooltip to show.
+    data.addRows([
+      <% @employees.each do |employee| %>
+        [{'v': '<%= employee.id %>', 'f': '<%= employee.name %>'}, '<%= employee.parent_id.to_s %>', '<%= employee.title %>.to_s'],
+      <% end %>
+      ]
+    )
+    // Create the chart.
+    var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+    // Draw the chart, setting the allowHtml option to true for the tooltips.
+    chart.draw(data, {'allowHtml':true});
+  }
+</script>
 
 <h1>Employees</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @employees.each do |employee| %>
-      <tr>
-        <td>Name: <%= employee.name %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <!-- <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Employee', new_employee_path %>
+<div id="chart_div"></div>
