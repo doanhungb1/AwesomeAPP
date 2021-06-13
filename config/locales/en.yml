@@ -31,6 +31,14 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        employee:
+          attributes:
+            base:
+              reach_max_subordinates: This manager have max subordinates
+              reach_max_employees: We reach out maximum employees
   relationship_with_employee:
     manager: "Employee %{first_employee_name} is one of managers of employee %{second_employee_name}"
     subordinate: "Employee %{first_employee_name} is a subordinate employee %{second_employee_name}"

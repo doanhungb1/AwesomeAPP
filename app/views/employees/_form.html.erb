@@ -11,7 +11,7 @@
 
   <div>
     <%= form.label "Direct Manager" %><br>
-    <%= form.select("parent_id", @employees.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }) %>
+    <%= form.select("parent_id", Employee.all.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }) %>
   <div>
 
   <% if employee.errors.any? %>

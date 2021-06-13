@@ -1,5 +1,5 @@
 <h1>Profile</h1>
-<% if @profile.present? %>
+<% if @profile.present? && @profile.valid? %>
   <p><b>Name:</b> <%= @profile.name %></p>
   <p><b>Title:</b> <%= @profile.title %></p>
   <% if @profile.parent.present? %>
@@ -20,11 +20,23 @@
 
     <div>
       <%= form.label "Direct Manager" %><br>
-      <%= form.select("parent_id", @employees.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }) %>
+      <%= form.select("parent_id", Employee.all.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }) %>
     <div>
 
     <div class="actions">
       <%= form.submit %>
     </div>
+
+    <% if @profile && @profile.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+        <ul>
+          <% @profile.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

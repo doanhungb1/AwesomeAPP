@@ -2,7 +2,6 @@ class ProfileController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile, only: [:index, :update]
   def index
-    @employees = Employee.all
   end
 
   def create
@@ -13,7 +12,8 @@ class ProfileController < ApplicationController
         format.html { redirect_to @profile, notice: "Employee was successfully created." }
         format.json { render :show, status: :created, location: @profile }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        flash[:error] = @profile.errors.full_messages
+        format.html { render :index, status: :unprocessable_entity }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
