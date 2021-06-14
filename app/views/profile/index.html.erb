@@ -1,5 +1,6 @@
 <h1>Profile</h1>
 <% if @profile.present? && @profile.valid? %>
+  <p><b>Id:</b> <%= @profile.id %></p>
   <p><b>Name:</b> <%= @profile.name %></p>
   <p><b>Title:</b> <%= @profile.title %></p>
   <% if @profile.parent.present? %>
