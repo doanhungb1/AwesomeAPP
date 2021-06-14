@@ -3,7 +3,7 @@ class Employee < ApplicationRecord
 
   belongs_to :user, optional: true
 
-  validates :user_id, uniqueness: true, if: -> { user_id.present? }
+  validates :user_id, uniqueness: true, if: Proc.new { |emp| emp.user_id.present? }
   validates :name, presence: true
   validates :title, presence: true
   validate :max_subordinates_validator

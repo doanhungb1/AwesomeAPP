@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
   def login
-    @login || self.username || self.email
+    @login = self.username || self.email
   end
 
   def self.find_for_database_authentication(warden_conditions)
