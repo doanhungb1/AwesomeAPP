@@ -5,7 +5,7 @@ class EmployeesController < ApplicationController
   # GET /employees or /employees.json
   def index
     @employees = Employee.order(created_at: :asc)
-    @employees = @employees.limit(params[:number_first_employees]) if params[:number_first_employees]
+    @employees = @employees.limit(params[:number_first_employees].to_i) if params[:number_first_employees].present?
   end
 
   # GET /employees/1 or /employees/1.json
@@ -15,7 +15,6 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
-    @employees = Employee.all
   end
 
   # GET /employees/1/edit
