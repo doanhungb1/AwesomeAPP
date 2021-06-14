@@ -44,7 +44,7 @@ class EmployeesController < ApplicationController
         format.html { redirect_to @employee, notice: "Employee was successfully updated." }
         format.json { render :show, status: :ok, location: @employee }
       else
-        flash[:error] = @employee.errors.full_messages
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
     end

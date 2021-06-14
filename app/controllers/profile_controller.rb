@@ -25,7 +25,7 @@ class ProfileController < ApplicationController
         format.html { redirect_to @profile, notice: "Profile was successfully updated." }
         format.json { render :show, status: :ok, location: @profile }
       else
-        flash[:error] = @profile.errors.full_messages
+        format.html { render :index, status: :unprocessable_entity }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end

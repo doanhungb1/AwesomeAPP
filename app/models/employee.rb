@@ -5,7 +5,9 @@ class Employee < ApplicationRecord
 
   validates :user_id, uniqueness: true, if: Proc.new { |emp| emp.user_id.present? }
   validates :name, presence: true
+  validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/
   validates :title, presence: true
+  validates_format_of :title, :with => /\A[^`!@#\$%\^&*+_=]+\z/
   validate :max_subordinates_validator
   validate :max_employees
 
