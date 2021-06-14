@@ -46,6 +46,7 @@
 
 <div id="chart_div"></div>
 <div id="utility">
+  <h3>Utility functions</h3>
   <div class="employees_search">
     <%= form_with method: "get" do |form| %>
       <div>
@@ -54,7 +55,7 @@
       <div>
 
       <div class="actions">
-        <a id="employees_search_link" href="/employees/", data-remote= true>submit</a>
+        <a id="employees_search_link" class="btn btn-primary" href="/employees/", data-remote= true>submit</a>
       </div>
 
     <% end %>
@@ -68,7 +69,7 @@
       <div>
 
       <div class="actions">
-        <a id="managers_search_link" href="/employees/", data-remote= true>submit</a>
+        <a id="managers_search_link" class="btn btn-primary" href="/employees/", data-remote= true>submit</a>
       </div>
 
     <% end %>
@@ -77,13 +78,13 @@
   <div class="employees_search">
     <%= form_with method: "get" do |form| %>
       <div>
-        <%= form.label "Relationshipo between" %><br>
+        <%= form.label "Relationship between" %><br>
         <%= form.select("parent_id", @employees.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }, id: "first_emp_select") %>
         <%= form.select("parent_id", @employees.collect { |emp| [ emp.name, emp.id ] }, { include_blank: true }, id: "second_emp_select") %>
       <div>
 
       <div class="actions">
-        <a id="relationship_search_link" href="/employees/", data-remote= true>submit</a>
+        <a id="relationship_search_link" class="btn btn-primary" href="/employees/", data-remote= true>submit</a>
       </div>
 
     <% end %>
@@ -92,12 +93,12 @@
   <div class="employees_search">
     <%= form_with method: "get" do |form| %>
       <div>
-        <%= form.label "Show N first emploees" %><br>
+        <%= form.label "Show N first employees" %><br>
         <%= form.number_field("number_first_employees") %>
       <div>
 
       <div class="actions">
-          <input type="submit">
+          <input type="submit" value="submit" class="btn btn-primary">
       </div>
 
     <% end %>
