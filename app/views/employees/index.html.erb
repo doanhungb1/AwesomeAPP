@@ -12,7 +12,7 @@
     // For each orgchart box, provide the name, manager, and tooltip to show.
     data.addRows([
       <% @employees.each do |employee| %>
-        [{'v': '<%= employee.id %>', 'f': '<%= employee.name %>'}, '<%= employee.parent_id.to_s %>', '<%= employee.title %>'],
+        [{'v': '<%= employee.id %>', 'f': '<a href=/employees/<%= employee.id %>><%= employee.name %></a>'}, '<%= employee.parent_id.to_s %>', '<%= employee.title %>'],
       <% end %>
       ]
     )
